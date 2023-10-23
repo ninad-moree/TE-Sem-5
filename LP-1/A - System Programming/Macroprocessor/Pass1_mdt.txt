@@ -1,0 +1,2 @@
+MOVER	(P,0)	(P,0)	ADD	(P,0)	='1'	MOVER	(P,0)	(P,0)	ADD	(P,0)	='5'	MEND
+MOVER	(P,0)	(P,0)	MOVER	(P,0)	(P,0)	ADD	(P,0)	='15'	ADD	(P,0)	='10'	MEND

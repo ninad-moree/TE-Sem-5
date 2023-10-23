@@ -1,0 +1,5 @@
+&P,	&Q,	&U=CREG,
+&V=DREG	MOVER	&U,
+&P	MOVER	&V,
+&Q	ADD	&U,
+='15'	ADD	&V,
