@@ -39,5 +39,6 @@ db.Product.find({
     ]
 })
 
-
-
+db.Product.findOne({
+    rating: {$lte: 4}
+})
