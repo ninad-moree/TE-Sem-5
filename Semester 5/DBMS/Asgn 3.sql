@@ -17,47 +17,59 @@ select * from Student natural join PlacementDrive;
 
 
 -- 2. Find all the student details with company_name who have conducted in same drive
-SELECT s.s_id, s.s_name, s.drive_id, GROUP_CONCAT(pd.Pcompany_name) AS company_names FROM Student s JOIN PlacementDrive pd ON s.drive_id = pd.drive_id GROUP BY s.drive_id, s.s_id, s.s_name;
+SELECT s.s_id, s.s_name, s.drive_id, GROUP_CONCAT(pd.Pcompany_name) 
+AS company_names FROM Student s JOIN PlacementDrive pd 
+ON s.drive_id = pd.drive_id 
+GROUP BY s.drive_id, s.s_id, s.s_name;
 +-------+-----------------+----------+---------------+
-| s_id  | s_name      	| drive_id | company_names |
+| s_id  | s_name      	  | drive_id | company_names |
 +-------+-----------------+----------+---------------+
-| 31253 | Ninad More  	|  	101 | Google    	|
-| 31261 | Xywsc Hbhw  	|  	102 | Bajaj Finser  |
-| 31256 | Ghewf Thwb  	|  	103 | Amazon    	|
-| 31262 | Peeyush Kulgude |  	104 | Amazon    	|
-| 31255 | Reed Wise   	|  	105 | Barclays  	|
-| 31258 | Abcedf Khfh 	|  	106 | Google    	|
-| 31259 | Shoyo Blitz 	|  	107 | Microsoft 	|
-| 31254 | Karan Mundada   |  	108 | Deutsch Bank  |
-| 31260 | Ken Kaneki  	|  	109 | Flipkart  	|
-| 31263 | Pranay Agrawal  |  	110 | Microsoft 	|
+| 31253 | Ninad More  	  |  	101 | Google    	 |
+| 31261 | Xywsc Hbhw  	  |  	102 | Bajaj Finser   |
+| 31256 | Ghewf Thwb  	  |  	103 | Amazon    	 |
+| 31262 | Peeyush Kulgude |  	104 | Amazon    	 |
+| 31255 | Reed Wise   	  |  	105 | Barclays  	 |
+| 31258 | Abcedf Khfh 	  |  	106 | Google    	 |
+| 31259 | Shoyo Blitz 	  |  	107 | Microsoft 	 |
+| 31254 | Karan Mundada   |  	108 | Deutsch Bank   |
+| 31260 | Ken Kaneki  	  |  	109 | Flipkart  	 |
+| 31263 | Pranay Agrawal  |  	110 | Microsoft 	 |
 +-------+-----------------+----------+---------------+
 
 
 -- 3. List all the Student name and Student branch of Student having package 5 LPA
-select s.s_name, s_branch, pd.package_LPA from Student s join PlacementDrive pd on s.drive_id = pd.drive_id where pd.package_LPA in (20);
+select s.s_name, s_branch, pd.package_LPA 
+from Student s join PlacementDrive pd 
+on s.drive_id = pd.drive_id 
+where pd.package_LPA in (20);
 +----------------+----------+-------------+
-| s_name     	| s_branch | package_LPA |
+| s_name     	| s_branch  | package_LPA |
 +----------------+----------+-------------+
-| Pranay Agrawal | CE   	|      	20 |
-| Shoyo Blitz	| ENTC 	|      	20 |
+| Pranay Agrawal | CE   	|      	20    |
+| Shoyo Blitz	 | ENTC 	|      	20    |
 +----------------+----------+-------------+
 
 
 -- 4.List all the student names ,company_name having T_fee more than 20000
-select s.s_name, t.Tcompany_name,t.T_fee from Student s join Training t on s.t_id = t.t_id where T_fee > 20000;
+select s.s_name, t.Tcompany_name,t.T_fee 
+from Student s join Training t 
+on s.t_id = t.t_id 
+where T_fee > 20000;
 +---------------+---------------+----------+
-| s_name    	| Tcompany_name | T_fee	|
+| s_name    	| Tcompany_name | T_fee	   |
 +---------------+---------------+----------+
-| Karan Mundada | Tata      	|	26450 |
+| Karan Mundada | Tata      	|	26450  |
 | Reed Wise 	| Redhat    	| 20498.75 |
 +---------------+---------------+----------+
 
 
 -- 5. Display all training details attended by ‘ninad” in year 2020.
-select s.s_name, t.* from Student s join Training t on s.t_id = t.t_id where s_name="Ninad More" and T_year=2020;
+select s.s_name, t.* 
+from Student s join Training t 
+on s.t_id = t.t_id 
+where s_name="Ninad More" and T_year=2020;
 +------------+------+---------------+-------+--------+
-| s_name 	| t_id | Tcompany_name | T_fee | T_year |
+| s_name 	| t_id | Tcompany_name | T_fee | T_year  |
 +------------+------+---------------+-------+--------+
 | Ninad More |  501 | Amazon    	| 15000 |   2020 |
 +------------+------+---------------+-------+--------+
@@ -83,7 +95,10 @@ select * from Training where T_year < 2021;
 
 
 -- 7. List the students name with company ‘Microsoft’ and location ’Thane’.
-select s.s_name, p.Pcompany_name, p.location from Student s join PlacementDrive p on s.drive_id = p.drive_id where Pcompany_name = "Amazon" and location = "Pune";
+select s.s_name, p.Pcompany_name, p.location 
+from Student s join PlacementDrive p 
+on s.drive_id = p.drive_id 
+where Pcompany_name = "Amazon" and location = "Pune";
 +------------+---------------+----------+
 | s_name 	| Pcompany_name | location |
 +------------+---------------+----------+
@@ -92,7 +107,10 @@ select s.s_name, p.Pcompany_name, p.location from Student s join PlacementDrive 
 
 
 -- 8. Find the names of all Students who have joined ‘Microsoft ‘ training in 2015 .
-select s.s_name, t.Tcompany_name, t.T_year from Student s join Training t on s.t_id = t.t_id where Tcompany_name="Amazon" and T_year=2020;
+select s.s_name, t.Tcompany_name, t.T_year 
+from Student s join Training t 
+on s.t_id = t.t_id 
+where Tcompany_name="Amazon" and T_year=2020;
 +------------+---------------+--------+
 | s_name 	| Tcompany_name | T_year |
 +------------+---------------+--------+

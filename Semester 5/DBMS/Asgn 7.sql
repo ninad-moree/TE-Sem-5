@@ -2,7 +2,7 @@
 create trigger update_trigger
 before update on Library
 for each row
-insert into Library_Audit (book_id,book_name,date_of_issue,bstatus)values (OLD.bid,OLD.bname,OLD.doi,OLD.status);
+insert into Library_Audit (book_id,book_name,date_of_issue,bstatus) values (OLD.bid,OLD.bname,OLD.doi,OLD.status);
 
 -- //AFTER UPDATE
 create trigger update_trigger1
@@ -14,13 +14,13 @@ insert into Library_Audit values(OLD.bid,OLD.bname,new.bname,OLD.doi,OLD.status)
 create trigger t1
 before delete on Library
 for each row
-insert into Library_Audit (book_id,book_name,date_of_issue,bstatus)values (OLD.bid,OLD.bname,OLD.doi,OLD.status);
+insert into Library_Audit (book_id,book_name,date_of_issue,bstatus) values (OLD.bid,OLD.bname,OLD.doi,OLD.status);
 
 -- //after delete
 create trigger t2
 after delete on Library
 for each row
-insert into Library_Audit (book_id,book_name,date_of_issue,bstatus)values (OLD.bid,OLD.bname,OLD.doi,OLD.status);
+insert into Library_Audit (book_id,book_name,date_of_issue,bstatus) values (OLD.bid,OLD.bname,OLD.doi,OLD.status);
 
 -- Insert trigger
 delimiter //
@@ -33,12 +33,6 @@ create trigger t3
     ->         signal sqlstate '45000' set message_text='INCORRECT NAME';
     ->     end if;
     -> end //
-
-
-create trigger update_trigger
-    -> before update on Library
-    -> for each row
-    -> insert into Library_Audit (book_id,book_name,date_of_issue,bstatus)values (OLD.bid,OLD.bname,OLD.doi,OLD.status);
 
 
 update Library set bname='Othello' where bid=2;
@@ -58,18 +52,6 @@ select * from Library;
 |    2 | Othello      | 2023-09-05 | I      |
 |    3 | Harry Potter | 2023-09-05 | I      |
 +------+--------------+------------+--------+
-
-
-create trigger update_trigger
-    -> after update on Library
-    -> for each row
-    -> insert into Library_Audit values(OLD.bid,OLD.bname,new.bname,OLD.doi,OLD.status);
-
-
-create trigger update_trigger1
-    -> after update on Library
-    -> for each row
-    -> insert into Library_Audit values(OLD.bid,OLD.bname,new.bname,OLD.doi,OLD.status);
 
 
 update Library set bname='Percy' where bid=1;

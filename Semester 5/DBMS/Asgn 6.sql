@@ -9,6 +9,8 @@ insert into old_roll values(4,'d');
 insert into old_roll values(3,'bcd');
 insert into old_roll values(1,'bc');
 insert into old_roll values(5,'bch');
+
+
 insert into new_roll values(2,'b');
 insert into new_roll values(5,'bch');
 insert into new_roll values(1,'bc');
@@ -23,20 +25,22 @@ begin
     declare oldrollnumber int;
     declare oldname varchar(10);
     declare newrollnumber int;
-    declare newname varchar(10);
+    declare new_name varchar(10);
     declare done int default false;
+
     declare c1 cursor for select roll,name from old_roll;
     declare c2 cursor for select roll,name from new_roll;
+    
     declare continue handler for not found set done=true;
+    
     open c1;
-
     loop1:loop
         fetch c1 into oldrollnumber,oldname;
         if done then
             leave loop1;
         end if;
+    
         open c2;
-
         loop2:loop
             fetch c2 into newrollnumber,newname;
             if done then

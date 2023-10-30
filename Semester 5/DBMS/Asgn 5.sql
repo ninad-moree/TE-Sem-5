@@ -3,32 +3,45 @@
 --  if marks scored are between 989 and900 category is first class, if marks 899 and 825 category is 
 --  Higher Second Class.
 
-
-
-create table Stud_Marks(
-	STUD_NAME varchar2(20),
-	TOTAL_MARKS number(5)
+CREATE TABLE stud_marks(
+	name VARCHAR(50),
+	total_marks INT
 );
 
-create table Result(
-	STUD_NAME varchar2(20),
-	ROLL_NO number(5),
-	CLASS varchar2(20)
+CREATE TABLE result (
+	roll INT PRIMARY KEY NOT NULL AUTO_INCREMENT,
+	class VARCHAR(25) DEFAULT NULL,
+	name VARCHAR(50)
 );
 
+INSERT INTO Students VALUES ('ABC', 1000);
+INSERT INTO Students VALUES ('DEF', 969);
+INSERT INTO Students VALUES ('GHK', 869);
+INSERT INTO Students VALUES ('LMN', 1200);
+INSERT INTO Students VALUES ('TUV', 920);
 
-create or replace PROCEDURE PROC_GRADE1 AS
+DELIMITER //
+CREATE PROCEDURE proc_grade (IN studmarks INT, IN name VARCHAR(50), IN roll INT)
 BEGIN
-    FOR i IN (SELECT * FROM Stud_Marks)
-    LOOP
-   	 DBMS_OUTPUT.PUT_LINE('Student Name: ' || i.Stud_Name || ' Student Marks: ' || i.Total_Marks);
-   	 IF i.Total_Marks <=1500 AND i.Total_Marks >=990 THEN
-   		 INSERT INTO Result (STUD_NAME,CLASS) VALUES (i.Stud_Name,'Distinction');
-   	 ELSIF i.Total_Marks <=989 AND i.Total_Marks >=900 THEN
-   		 INSERT INTO Result (STUD_NAME,CLASS) VALUES (i.Stud_Name,'First Class');
-   	 ELSIF i.Total_Marks <=825 AND i.Total_Marks >=899 THEN
-   		 INSERT INTO Result (STUD_NAME,CLASS) VALUES (i.Stud_Name,'Higher Second Class');
-   	 END IF;
-    END LOOP;
-    COMMIT;
-END;
+	DECLARE clss VARCHAR(25);
+	IF studmarks BETWEEN 990 AND 1500 THEN
+		SET clss := 'Distinction';
+	ELSEIF studmarks BETWEEN 900 AND 989 THEN
+		SET clss := 'First Class';
+	ELSEIF studmarks BETWEEN 825 AND 899 THEN
+		SET clss := 'Higher Second Class';
+	ELSE
+		SET clss := 'Pass';
+	END IF;
+	INSERT INTO result VALUES (roll, clss, name);
+END //
+DELIMITER ;
+
+CALL proc_grade(900, 'ABC', 1);
+CALL proc_grade(1000, 'DEF', 2);
+CALL proc_grade(1490, 'GHK', 3);
+CALL proc_grade(799, 'Durvesh', 4);
+CALL proc_grade(750, 'LMN', 5);
+CALL proc_grade(869, 'TUV', 6);
+
+SELECT * FROM result;

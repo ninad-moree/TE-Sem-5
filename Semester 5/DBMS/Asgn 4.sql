@@ -11,7 +11,7 @@ select*from B;
 | roll | name              | idate      | book                      | status |
 +------+-------------------+------------+---------------------------+--------+
 |  201 | Rahul Sharma      | 2023-08-10 | The God of Small Things   | I      |
-|  202 | Priya Patel       | 2023-08-09 | Midnights Children       | I      |
+|  202 | Priya Patel       | 2023-08-09 | Midnights Children        | I      |
 |  203 | Amit Kumar        | 2023-08-08 | The Namesake              | I      |
 |  204 | Sneha Gupta       | 2023-08-07 | A Suitable Boy            | I      |
 |  205 | Rajiv Verma       | 2023-08-06 | Interpreter of Maladies   | I      |
@@ -74,7 +74,7 @@ select*from B;
 | roll | name              | idate      | book                      | status |
 +------+-------------------+------------+---------------------------+--------+
 |  201 | Rahul Sharma      | 2023-08-10 | The God of Small Things   | R      |
-|  202 | Priya Patel       | 2023-08-09 | Midnights Children       | I      |
+|  202 | Priya Patel       | 2023-08-09 | Midnights Children        | I      |
 |  203 | Amit Kumar        | 2023-08-08 | The Namesake              | I      |
 |  204 | Sneha Gupta       | 2023-08-07 | A Suitable Boy            | I      |
 |  205 | Rajiv Verma       | 2023-08-06 | Interpreter of Maladies   | I      |
@@ -109,7 +109,7 @@ select*from B;
 | roll | name              | idate      | book                      | status |
 +------+-------------------+------------+---------------------------+--------+
 |  201 | Rahul Sharma      | 2023-08-10 | The God of Small Things   | R      |
-|  202 | Priya Patel       | 2023-08-09 | Midnights Children       | I      |
+|  202 | Priya Patel       | 2023-08-09 | Midnights Children        | I      |
 |  203 | Amit Kumar        | 2023-08-08 | The Namesake              | I      |
 |  204 | Sneha Gupta       | 2023-08-07 | A Suitable Boy            | I      |
 |  205 | Rajiv Verma       | 2023-08-06 | Interpreter of Maladies   | R      |

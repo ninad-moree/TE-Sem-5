@@ -196,7 +196,9 @@ select s.s_name, t.t_id from Student s join Training t on s.t_id = t.t_id order 
 
 -- 8) Display PCompany name, S_name ,location and Package with Package 30K,
 -- 40K and 50k
-select pd.Pcompany_name, s.s_name, pd.location, pd.package_LPA from Student s join PlacementDrive pd on s.drive_id = pd.drive_id where pd.package_LPA in (20,22,25);
+select pd.Pcompany_name, s.s_name, pd.location, pd.package_LPA 
+from Student s join PlacementDrive pd on s.drive_id = pd.drive_id 
+where pd.package_LPA in (20,22,25);
 +---------------+-----------------+----------------+-------------+
 | Pcompany_name | s_name | location | package_LPA |
 +---------------+-----------------+----------------+-------------+
