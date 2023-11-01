@@ -11,7 +11,14 @@ db.website.insert({'roll':'5','name':'ash','amount':1000,'url':'www.pvg.com'});
 // ===============================
 
 // SUM AGGREGATE
-db.website.aggregate({$group: {_id:"$name", "total": {$sum:"$amount"}}});
+db.website.aggregate({
+    $group: {
+        _id:"$name", 
+        "total": {
+            $sum:"$amount"
+        }
+    }
+});
 // { "_id" : "ash", "total" : 5000 }
 // { "_id" : "rina", "total" : 3000 }
 // { "_id" : "jitesh", "total" : 2000 }
