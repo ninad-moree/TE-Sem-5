@@ -25,6 +25,17 @@
       <img src="https://img.shields.io/badge/Laboratory Practice 2-red?style=for-the-badge&" alt="LP2 Badge" />  
 </div>
 
-1. Data Science and Big Data Aanlytics Laboratory
-2. Web Technology Laboratory
-3. Laboratory Practice - 2
+<a href="">
+      1. Data Science and Big Data Aanlytics Laboratory
+</a>
+<br/>
+<a href="">
+      2. Web Technology Laboratory
+</a>
+<br/>
+<a href="">
+      3. Laboratory Practice - 2
+</a>
+
+
+
