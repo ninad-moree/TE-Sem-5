@@ -2,7 +2,9 @@
 
 ## Semester: 5
 <div id="badges" style="display: flex; justify-content: center;">
-      <img src="https://img.shields.io/badge/Database Management-green?style=for-the-badge&" alt="DBMS Badge" />
+      <a href="https://github.com/ninad-moree/TE-Lab-Work/tree/main/Semester%205/DBMS">
+            <img src="https://img.shields.io/badge/Database Management-green?style=for-the-badge&" alt="DBMS Badge" />
+      </a>
       <img src="https://img.shields.io/badge/Laboratory Practice 1-yellow?style=for-the-badge&" alt="LP1 Badge" />
 </div>
 
