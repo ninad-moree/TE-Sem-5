@@ -5,8 +5,14 @@
       <a href="https://github.com/ninad-moree/TE-Lab-Work/tree/main/Semester%205/DBMS">
             <img src="https://img.shields.io/badge/Database Management-green?style=for-the-badge&" alt="DBMS Badge" />
       </a>
-      <img src="https://img.shields.io/badge/Laboratory Practice 1-yellow?style=for-the-badge&" alt="LP1 Badge" />
+      <a href="https://github.com/ninad-moree/TE-Lab-Work/tree/main/Semester%205/LP-1">
+            <img src="https://img.shields.io/badge/Laboratory Practice 1-yellow?style=for-the-badge&" alt="LP1 Badge" />
+      </a>
 </div>
+
+<a href="https://github.com/ninad-moree/TE-Lab-Work/tree/main/Semester%205/DBMS">
+      1. Database Management Systems Laboratory
+</a>
 
 1. Database Management Systems Laboratory
 2. Laboratory Practice - 1
