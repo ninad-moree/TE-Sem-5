@@ -1,5 +1,7 @@
 # TE Lab Assignments
 
+--
+
 ## Semester: 5
 <div id="badges" style="display: flex; justify-content: center;">
       <a href="https://github.com/ninad-moree/TE-Lab-Work/tree/main/Semester%205/DBMS">
@@ -13,9 +15,11 @@
 <a href="https://github.com/ninad-moree/TE-Lab-Work/tree/main/Semester%205/DBMS">
       1. Database Management Systems Laboratory
 </a>
+ <a href="https://github.com/ninad-moree/TE-Lab-Work/tree/main/Semester%205/LP-1">
+      2. Laboratory Practice - 1
+</a>
 
-1. Database Management Systems Laboratory
-2. Laboratory Practice - 1
+--
 
 ## Semester: 6
 <div id="badges" style="display: flex; justify-content: center;">
