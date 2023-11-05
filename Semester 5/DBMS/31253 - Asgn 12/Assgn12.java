@@ -12,7 +12,6 @@ import java.util.Scanner;
          int choice;
          try {
         	    MongoClient mongoClient = new MongoClient("10.10.10.176", 27017);
-        	 
              DB db = mongoClient.getDB("31253_db");
              DBCollection collection = db.getCollection("Students");
 
