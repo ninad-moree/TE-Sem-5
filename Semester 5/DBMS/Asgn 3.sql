@@ -1,18 +1,18 @@
 -- 1. Find the Student details and Placement details using NATURAL JOIN.
 select * from Student natural join PlacementDrive;
 +----------+-------+------+-----------------+------+----------+------------+---------------+-------------+----------------+
-| drive_id | s_id  | t_id | s_name      	| CGPA | s_branch | s_dob  	| Pcompany_name | package_LPA | location   	|
+| drive_id | s_id  | t_id | s_name      	| CGPA | s_branch | s_dob  	| Pcompany_name | package_LPA | location   |
 +----------+-------+------+-----------------+------+----------+------------+---------------+-------------+----------------+
-|  	101 | 31253 |  501 | Ninad More  	| 9.98 | CE   	| 18-03-2003 | Google    	|      	25 | Pune       	|
-|  	110 | 31263 |  510 | Pranay Agrawal  |  9.9 | CE   	| 25-12-2003 | Microsoft 	|      	20 | Mumbai     	|
-|  	104 | 31262 |  504 | Peeyush Kulgude | 9.69 | CE   	| 07-07-2003 | Amazon    	|      	22 | Mumbai     	|
-|  	108 | 31254 |  508 | Karan Mundada   | 9.42 | CE   	| 17-02-2003 | Deutsch Bank  |      	21 | Banglore   	|
-|  	106 | 31258 |  506 | Abcedf Khfh 	| 8.69 | IT   	| 09-01-2003 | Google    	|      	15 | Pune       	|
-|  	105 | 31255 |  505 | Reed Wise   	| 8.42 | IT   	| 17-02-2003 | Barclays  	|      	17 | Pune       	|
-|  	102 | 31261 |  502 | Xywsc Hbhw  	| 9.19 | IT   	| 30-05-2003 | Bajaj Finser  |    	17.5 | Banglore   	|
-|  	103 | 31256 |  503 | Ghewf Thwb  	|   10 | IT   	| 06-06-2003 | Amazon    	|      	27 | Pune       	|
-|  	107 | 31259 |  507 | Shoyo Blitz 	|   10 | ENTC 	| 01-01-2003 | Microsoft 	|      	20 | Silicon Valley |
-|  	109 | 31260 |  509 | Ken Kaneki  	| 9.18 | ENTC 	| 04-07-2003 | Flipkart  	|      	14 | Mumbai     	|
+|  	101 | 31253 |  501 | Ninad More  	    | 9.98 | CE   	| 18-03-2003 | Google    	  |      	25 | Pune       	 |
+|  	110 | 31263 |  510 | Pranay Agrawal   |  9.9 | CE   	| 25-12-2003 | Microsoft 	  |      	20 | Mumbai     	 |
+|  	104 | 31262 |  504 | Peeyush Kulgude  | 9.69 | CE   	| 07-07-2003 | Amazon    	  |      	22 | Mumbai     	 |
+|  	108 | 31254 |  508 | Karan Mundada    | 9.42 | CE   	| 17-02-2003 | Deutsch Bank |      	21 | Banglore   	 |
+|  	106 | 31258 |  506 | Abcedf Khfh 	    | 8.69 | IT   	| 09-01-2003 | Google    	  |      	15 | Pune       	 |
+|  	105 | 31255 |  505 | Reed Wise   	    | 8.42 | IT   	| 17-02-2003 | Barclays  	  |      	17 | Pune       	 |
+|  	102 | 31261 |  502 | Xywsc Hbhw  	    | 9.19 | IT   	| 30-05-2003 | Bajaj Finser |    	17.5 | Banglore   	 |
+|  	103 | 31256 |  503 | Ghewf Thwb  	    |   10 | IT   	| 06-06-2003 | Amazon    	  |      	27 | Pune       	 |
+|  	107 | 31259 |  507 | Shoyo Blitz 	    |   10 | ENTC 	| 01-01-2003 | Microsoft 	  |      	20 | Silicon Valley|
+|  	109 | 31260 |  509 | Ken Kaneki  	    | 9.18 | ENTC 	| 04-07-2003 | Flipkart  	  |      	14 | Mumbai     	 |
 +----------+-------+------+-----------------+------+----------+------------+---------------+-------------+----------------+
 
 

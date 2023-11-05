@@ -13,8 +13,7 @@ public class Ass8 {
 		try
 		{
 			Class.forName("com.mysql.cj.jdbc.Driver");
-			Connection con=DriverManager.getConnection(
-			"jdbc:mysql://10.10.13.128/31253_db","te31253","te31253");
+			Connection con=DriverManager.getConnection("jdbc:mysql://10.10.13.128/31253_db","te31253","te31253");
 			Statement smt=con.createStatement();
 			if(con!=null && !con.isClosed())
 			{
