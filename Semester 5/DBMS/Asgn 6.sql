@@ -1,63 +1,57 @@
--- Write a PL/SQL block of code using parameterized Cursor, that will merge the data available in the newly 
--- created table
+create table T1(roll int, name varchar(25));
+create table T2(roll int, name varchar(25));
 
-create table old_roll(roll int,name varchar(10));
+insert into T1 values(1, 'abc');
+insert into T1 values(2, 'def');
+insert into T1 values(3, 'ghk');
+insert into T1 values(4, 'lmn');
 
-create table new_roll(roll int,name varchar(10));
+insert into T2 values(1, 'abc');
+insert into T2 values(3, 'ghk');
+insert into T2 values(5, 'tuv');
 
-insert into old_roll values(4,'d');
-insert into old_roll values(3,'bcd');
-insert into old_roll values(1,'bc');
-insert into old_roll values(5,'bch');
+select * from T1;
+select * from T2;
 
-
-insert into new_roll values(2,'b');
-insert into new_roll values(5,'bch');
-insert into new_roll values(1,'bc');
-
-select * from old_roll;
-
-select * from new_roll;
-
-delimiter //
-create procedure roll_list()
+DELIMITER //
+create procedure TRoll()
 begin
-    declare oldrollnumber int;
-    declare oldname varchar(10);
-    declare newrollnumber int;
-    declare new_name varchar(10);
+    declare oldr int;
+    declare newr int;
+    declare oldn varchar(25);
+    declare newn varchar(25);
+
     declare done int default false;
 
-    declare c1 cursor for select roll,name from old_roll;
-    declare c2 cursor for select roll,name from new_roll;
-    
-    declare continue handler for not found set done=true;
-    
+    declare c1 cursor for select name, roll from T1;
+    declare c2 cursor for select name, roll from T2;
+
+    declare continue handler for not found set done = false;
+
     open c1;
-    loop1:loop
-        fetch c1 into oldrollnumber,oldname;
+    loop1: loop
+        fetch c1 into oldn, oldr;
         if done then
             leave loop1;
         end if;
-    
+
         open c2;
-        loop2:loop
-            fetch c2 into newrollnumber,newname;
+        loop2: loop
+            fetch c2 into newn, newr;
             if done then
-                insert into new_roll values(oldrollnumber,oldname);
-                set done=false;
+                insert into T2 values(oldr, oldn);
+                set done = true;
                 close c2;
                 leave loop2;
             end if;
-            if oldrollnumber=newrollnumber then
+            if oldr = newr then
+                close c2;
                 leave loop2;
             end if;
         end loop;
     end loop;
-        close c1;
-end //
-delimiter ;
+    close c1;
+end//
+DELIMITER ;
 
-call roll_list();
-
-select * from new_roll;
+call TRoll();
