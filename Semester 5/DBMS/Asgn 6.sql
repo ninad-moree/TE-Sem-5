@@ -13,6 +13,7 @@ insert into T2 values(5, 'tuv');
 select * from T1;
 select * from T2;
 
+-- EXPLICIT CURSOR
 DELIMITER //
 create procedure TRoll()
 begin
@@ -55,3 +56,19 @@ end//
 DELIMITER ;
 
 call TRoll();
+select * from T2;
+
+-- IMPLICIT CURSOR
+DELIMITER //
+declare oldr T1.roll%type;
+declare oldn T1.name%type;
+begin
+    for t in (select roll, name from T1) loop
+        begin
+            select roll, name into oldr, oldn from T2 where roll = t.roll;
+        exception
+            when NO_DATA_FOUND then
+                insert into T2(roll, name) values (t.roll, t.name);
+        end;
+    end;
+end;
