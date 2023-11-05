@@ -20,6 +20,7 @@ INSERT INTO Students VALUES ('GHK', 869);
 INSERT INTO Students VALUES ('LMN', 1200);
 INSERT INTO Students VALUES ('TUV', 920);
 
+-- PROCEDURE
 DELIMITER //
 CREATE PROCEDURE proc_grade (IN studmarks INT, IN name VARCHAR(50), IN roll INT)
 BEGIN
@@ -45,3 +46,20 @@ CALL proc_grade(750, 'LMN', 5);
 CALL proc_grade(869, 'TUV', 6);
 
 SELECT * FROM result;
+
+
+-- FUNCTION
+DELIMITER //
+create function grading(marks int)
+returns varchar(25)
+deterministic
+begin
+	declare grade varchar(25);
+	if marks between 900 and 1000 then
+		set grade = "Distinction";
+	else
+		set grade = "Pass";
+	endif;
+	return grade;
+end;
+DELIMITER ;
