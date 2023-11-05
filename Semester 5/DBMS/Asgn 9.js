@@ -54,3 +54,25 @@ db.Student.updateOne(
     {name: "Ninad"},
     {$set: {marks: 95}}
 );
+
+db.Student.insertOne({
+    name: "Vinit",
+    rollno: 31254,
+    branch: "CE",
+    marks: [90,87,91,98],
+});
+
+db.Student.find(
+    {name: "Vinit"},
+    {"marks": {$slice: 2}},
+);
+
+db.Student.find({
+        name: "Vinit",
+        marks: {$size: 4},
+});
+
+db.Student.updateOne(
+    {name: "Vinit"},
+    {$push: {marks: 78}}
+);
