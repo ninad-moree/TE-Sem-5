@@ -26,7 +26,7 @@ begin
     declare c1 cursor for select name, roll from T1;
     declare c2 cursor for select name, roll from T2;
 
-    declare continue handler for not found set done = false;
+    declare continue handler for not found set done = true;
 
     open c1;
     loop1: loop
@@ -40,7 +40,7 @@ begin
             fetch c2 into newn, newr;
             if done then
                 insert into T2 values(oldr, oldn);
-                set done = true;
+                set done = false;
                 close c2;
                 leave loop2;
             end if;
