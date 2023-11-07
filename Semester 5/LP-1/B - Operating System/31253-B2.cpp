@@ -1,181 +1,132 @@
 #include <iostream>
-#include <algorithm>
+#include <vector>
+#include <queue>
 using namespace std;
-
-class Job
-{
-    string name;
-    int execution_time;
+struct Job {
+    int id;
+    int arrival_time;
+    int burst_time;
     int waiting_time;
-    int time_left;
-
-public:
-    Job()
-    {
-        name = "";
-        execution_time = 0;
-        waiting_time = 0;
-        time_left = 0;
-    }
-    void input()
-    {
-        cout << "Enter name:";
-        cin >> name;
-        cout << "Enter execution time:";
-        cin >> execution_time;
-        time_left = execution_time;
-    }
-
-    void output()
-    {
-        cout << "Job:" << name << endl;
-        cout << "Execution Time :" << execution_time << endl;
-        cout << "Waiting Time :" << waiting_time << endl;
-    }
-
-    friend class JobScheduler;
+    int turnaround_time;
 };
 
-class JobScheduler
-{
-    Job *arr;
-    int noOfProcesses;
+void printJobTable(const vector<Job>& jobs) {
+    cout << "Job\tArrival Time\tBurst Time\tWaiting Time\tTurnaround Time\n";
+    for (const Job& job : jobs) {
+        cout << job.id << "\t" << job.arrival_time << "\t\t" << job.burst_time << "\t\t" << job.waiting_time << "\t\t" << job.turnaround_time << endl;
+    }
+}
 
-public:
-    JobScheduler(int n)
-    {
-        noOfProcesses = n;
-        arr = new Job[noOfProcesses];
+// First-Come-First-Serve (FCFS) Scheduling
+void FCFS(vector<Job>& jobs) {
+    int currentTime = 0;
+    for (Job& job : jobs) {
+        currentTime = max(currentTime, job.arrival_time);
+        job.waiting_time = currentTime - job.arrival_time;
+        job.turnaround_time = job.waiting_time + job.burst_time;
+        currentTime += job.burst_time;
+    }
+    printJobTable(jobs);
+}
 
-        for (int i = 0; i < noOfProcesses; i++)
-        {
-            arr[i].input();
-            cout << endl;
+// Shortest Job First (SJF) Scheduling
+void SJF(vector<Job>& jobs) {
+    int currentTime = 0;
+    vector<Job> completedJobs;
+
+    while (!jobs.empty()) {
+        int shortestJobIdx = -1;
+        int shortestBurstTime = 100000;
+
+        for (int i = 0; i < jobs.size(); i++) {
+            if (jobs[i].arrival_time <= currentTime && jobs[i].burst_time < shortestBurstTime) {
+                shortestJobIdx = i;
+                shortestBurstTime = jobs[i].burst_time;
+            }
+        }
+
+        if (shortestJobIdx == -1) {
+            currentTime++;
+        } else {
+            Job& job = jobs[shortestJobIdx];
+            job.waiting_time = currentTime - job.arrival_time;
+            job.turnaround_time = job.waiting_time + job.burst_time;
+            currentTime += job.burst_time;
+            completedJobs.push_back(job);
+            jobs.erase(jobs.begin() + shortestJobIdx);
         }
     }
 
-    void FCFS()
-    {
-        int waiting = 0;
-        for (int i = 1; i < noOfProcesses; i++)
-        {
-            waiting = waiting + arr[i - 1].execution_time;
-            arr[i].waiting_time = waiting;
-        }
-        for (int i = 0; i < noOfProcesses; i++)
-        {
-            arr[i].output();
-            cout << endl;
-        }
+    printJobTable(completedJobs);
+}
+
+// Round Robin (RR) Scheduling
+void RR(vector<Job>& jobs, int timeQuantum) {
+    int currentTime = 0;
+    int n = jobs.size();
+    vector<int> remainingTime(n, 0);
+
+    for (int i = 0; i < n; i++) {
+        remainingTime[i] = jobs[i].burst_time;
     }
 
-    void SJF()
-    {
-        Job *temp = new Job[noOfProcesses];
-        for (int i = 0; i < noOfProcesses; i++)
-        {
-            temp[i].name = arr[i].name;
-            temp[i].execution_time = arr[i].execution_time;
-            temp[i].waiting_time = 0;
-        }
+    int idx = 0;
+    while (true) {
+        bool done = true;
 
-        int waiting2 = 0;
-
-        for (int i = 0; i < noOfProcesses; i++)
-        {
-            for (int j = i + 1; j < noOfProcesses; j++)
-            {
-                if (temp[i].execution_time > temp[j].execution_time)
-                {
-                    Job job;
-                    job = temp[i];
-                    temp[i] = temp[j];
-                    temp[j] = job;
+        for (int i = 0; i < n; i++) {
+            if (jobs[i].arrival_time <= currentTime) {
+                if (remainingTime[i] > 0) {
+                    done = false;
+                    if (remainingTime[i] > timeQuantum) {
+                        currentTime += timeQuantum;
+                        remainingTime[i] -= timeQuantum;
+                        cout << "Job " << jobs[i].id << " is running." << endl;
+                    } else {
+                        currentTime += remainingTime[i];
+                        jobs[i].turnaround_time = currentTime - jobs[i].arrival_time;
+                        jobs[i].waiting_time = jobs[i].turnaround_time - jobs[i].burst_time;
+                        remainingTime[i] = 0;
+                        cout << "Job " << jobs[i].id << " is completed." << endl;
+                    }
                 }
             }
         }
-        for (int i = 1; i < noOfProcesses; i++)
-        {
-            waiting2 = waiting2 + temp[i - 1].execution_time;
-            temp[i].waiting_time = waiting2;
-        }
-        for (int i = 0; i < noOfProcesses; i++)
-        {
-            temp[i].output();
-            cout << endl;
-        }
-    }
 
-    void roundRobin()
-    {
-        int timeQuantum;
-        cout << "Enter time quantum: ";
-        cin >> timeQuantum;
-
-        for (int i = 0; i < noOfProcesses; i++)
-        {
-            if (arr[i].execution_time > timeQuantum)
-            {
-                arr[i].output();
-                cout << "Will not be executed lagging by " << arr[i].execution_time - timeQuantum << endl;
-            }
-            else
-            {
-                arr[i].output();
-                cout << "Will be executed.\n";
-            }
-            cout << endl;
-        }
-    }
-};
-
-int main()
-{
-    int n1;
-    cout << "Enter no of processes:";
-    cin >> n1;
-    JobScheduler js(n1);
-
-    int choice;
-
-    while (choice != 4)
-    {
-        cout << "What do you want to do" << endl;
-        cout << "1. FCFS" << endl;
-        cout << "2. SJF" << endl;
-        cout << "3. Round Robin" << endl;
-        cout << "4. Exit" << endl;
-        cout << endl;
-        cout << "Enter choice:";
-        cin >> choice;
-        cout << endl;
-
-        switch (choice)
-        {
-        case 1:
-            js.FCFS();
-            cout << endl;
-            break;
-
-        case 2:
-            js.SJF();
-            cout << endl;
-            break;
-
-        case 3:
-            js.roundRobin();
-            cout << endl;
-            break;
-
-        case 4:
-            cout << "Exiting program...";
-            break;
-
-        default:
-            cout << "Wrong input!\n";
+        if (done) {
             break;
         }
     }
+
+    printJobTable(jobs);
+}
+
+
+int main() {
+    int n, timeQuantum;
+    cout << "Enter the number of jobs: ";
+    cin >> n;
+    cout << "Enter the time quantum for Round Robin: ";
+    cin >> timeQuantum;
+
+    vector<Job> jobs(n);
+
+    for (int i = 0; i < n; i++) {
+        jobs[i].id = i + 1;
+        cout << "Enter arrival time for Job " << i + 1 << ": ";
+        cin >> jobs[i].arrival_time;
+        cout << "Enter burst time for Job " << i + 1 << ": ";
+        cin >> jobs[i].burst_time;
+    }
+
+    cout << "\nFirst-Come-First-Serve (FCFS) Scheduling:" << endl;
+    FCFS(jobs);
+
+    cout << "\nShortest Job First (SJF) Scheduling:" << endl;
+    SJF(jobs);
+
+    cout << "\nRound Robin (RR) Scheduling:" << endl;
+    RR(jobs, timeQuantum);
 
     return 0;
 }

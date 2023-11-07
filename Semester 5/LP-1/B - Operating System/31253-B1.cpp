@@ -11,7 +11,7 @@ void critical_section(int thread_id)
 {
     while (mutex_flag.exchange(true))
     {
-        std::this_thread::yield();
+        this_thread::yield();
     }
 
     cout << "Thread " << thread_id << " is in the critical section." << std::endl;
