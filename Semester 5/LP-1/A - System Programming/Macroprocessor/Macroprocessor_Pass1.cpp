@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <conio.h>
 using namespace std;
 
 void processMacroPass1(const std::string &inputFile)
@@ -111,5 +112,6 @@ void processMacroPass1(const std::string &inputFile)
 int main()
 {
     processMacroPass1("Input.asm");
+    getch();
     return 0;
 }

@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <conio.h>
 using namespace std;
 
 struct MDTEntry
@@ -59,5 +60,6 @@ int main()
     fclose(f2);
     fclose(f3);
     cout << "Finished" << endl;
+    getch();
     return 0;
 }
