@@ -1,6 +1,5 @@
 import socket
 
-
 def client_program():
     # getting the host name for the client as both are running on same pc
     host = socket.gethostname()

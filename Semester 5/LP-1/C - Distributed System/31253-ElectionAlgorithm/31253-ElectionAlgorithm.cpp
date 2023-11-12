@@ -49,7 +49,7 @@ public:
                     {
                         cout << "Message  is sent from " << gid << " to " << i << endl;
                         if (pStatus[i])
-                        {
+                        { 
                             subcoordinator = i;
                             cout << "Response is sent from " << i << " to " << gid << endl;
                             flag = 1;
@@ -206,8 +206,7 @@ public:
         cout << "Processes:  ";
         for (i = 1; i <= n; i++)
             cout << i << "\t";
-        cout << endl
-             << "Alive:      ";
+        cout << endl << "Alive:      ";
         for (i = 1; i <= n; i++)
             cout << pStatus[i] << "\t";
         cout << "\n-------------------------------------------------\n";
