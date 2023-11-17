@@ -8,6 +8,7 @@ struct Job {
     int burst_time;
     int waiting_time;
     int turnaround_time;
+    int priority;
 };
 
 void printJobTable(const vector<Job>& jobs) {
@@ -101,6 +102,35 @@ void RR(vector<Job>& jobs, int timeQuantum) {
     printJobTable(jobs);
 }
 
+void priorityScheduling(vector<Job>& jobs) {
+    int currentTime = 0;
+    vector<Job> completedJobs;
+
+    while (!jobs.empty()) {
+        int highestPriorityIdx = -1;
+        int highestPriority = 100000;
+
+        for (int i = 0; i < jobs.size(); i++) {
+            if (jobs[i].arrival_time <= currentTime && jobs[i].priority < highestPriority) {
+                highestPriorityIdx = i;
+                highestPriority = jobs[i].priority;
+            }
+        }
+
+        if (highestPriorityIdx == -1) {
+            currentTime++;
+        } else {
+            Job& job = jobs[highestPriorityIdx];
+            job.waiting_time = currentTime - job.arrival_time;
+            job.turnaround_time = job.waiting_time + job.burst_time;
+            currentTime += job.burst_time;
+            completedJobs.push_back(job);
+            jobs.erase(jobs.begin() + highestPriorityIdx);
+        }
+    }
+    printJobTable(completedJobs);
+}
+
 
 int main() {
     int n, timeQuantum;
@@ -117,6 +147,8 @@ int main() {
         cin >> jobs[i].arrival_time;
         cout << "Enter burst time for Job " << i + 1 << ": ";
         cin >> jobs[i].burst_time;
+        cout << "Enter priority for Job " << i + 1 << ": ";
+        cin >> jobs[i].priority;
     }
 
     cout << "\nFirst-Come-First-Serve (FCFS) Scheduling:" << endl;
@@ -127,6 +159,9 @@ int main() {
 
     cout << "\nRound Robin (RR) Scheduling:" << endl;
     RR(jobs, timeQuantum);
+
+    cout << "\nPriority Scheduling:" << endl;
+    priorityScheduling(jobs);
 
     return 0;
 }
