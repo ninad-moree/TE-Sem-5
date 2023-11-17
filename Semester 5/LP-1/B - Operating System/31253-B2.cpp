@@ -57,7 +57,6 @@ void SJF(vector<Job>& jobs) {
             jobs.erase(jobs.begin() + shortestJobIdx);
         }
     }
-
     printJobTable(completedJobs);
 }
 
@@ -93,15 +92,14 @@ void RR(vector<Job>& jobs, int timeQuantum) {
                 }
             }
         }
-
         if (done) {
             break;
         }
     }
-
     printJobTable(jobs);
 }
 
+// Priority Scheduling
 void priorityScheduling(vector<Job>& jobs) {
     int currentTime = 0;
     vector<Job> completedJobs;
@@ -130,7 +128,6 @@ void priorityScheduling(vector<Job>& jobs) {
     }
     printJobTable(completedJobs);
 }
-
 
 int main() {
     int n, timeQuantum;
