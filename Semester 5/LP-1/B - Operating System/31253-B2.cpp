@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <algorithm>
 #include <queue>
 using namespace std;
 struct Job {
@@ -20,6 +21,11 @@ void printJobTable(const vector<Job>& jobs) {
 
 // First-Come-First-Serve (FCFS) Scheduling
 void FCFS(vector<Job>& jobs) {
+    
+    sort(jobs.begin(), jobs.end(), [](const Job& a, const Job& b) {
+        return a.arrival_time < b.arrival_time;
+    });
+
     int currentTime = 0;
     for (Job& job : jobs) {
         currentTime = max(currentTime, job.arrival_time);
