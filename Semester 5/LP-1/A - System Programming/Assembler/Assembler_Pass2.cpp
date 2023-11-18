@@ -174,13 +174,13 @@ public:
 
             outputFile << generateMachineCode(opcode, operands) << std::endl;
         }
-
         outputFile.close();
     }
 };
 
 int main()
 {
+    // AssemblerPass2 pass2("Pass1_IC.txt");
     AssemblerPass2 pass2("Pass1_IC.txt");
     pass2.process();
     return 0;
