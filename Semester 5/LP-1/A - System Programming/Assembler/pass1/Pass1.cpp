@@ -1,4 +1,5 @@
 #include <bits/stdc++.h>
+#include <conio.h>
 using namespace std;
 
 class pass1
@@ -42,7 +43,7 @@ public:
         opcode["ANY"] = {"6", ""};
 
         ifstream fin;
-        fin.open("input.txt");
+        fin.open("input2.txt");
 
         ofstream fout;
         fout.open("intermediate_code.txt");
@@ -388,6 +389,7 @@ int main()
     // obj.symbol_show();
     // cout << "\n=================Literal=======================\n";
     // obj.lit_show();
+    getch();
     return 0;
 }
 
