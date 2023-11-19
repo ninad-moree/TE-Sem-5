@@ -1,11 +1,10 @@
 import re as regex
-import itertools
 import json
 import os
 
 os.system('cls' if os.name == 'nt' else 'clear')
 
-with open("Macro-Assembler/Pass-2/output/expcode.asm",'w') as file:
+with open("D:\Coding\PICT College\TE Lab Work\Semester 5\Python\Macro-Assembler\Pass-2\output\expcode.asm",'w') as file:
     pass
 file.close()
 
@@ -29,29 +28,33 @@ def convert(lst):
     return ' '.join(lst)
 
 # Input File(s)
-kpdtabFile = open('Macro-Assembler/Pass-2/input/kpdtab.json', 'r')
-mdtFile = open('Macro-Assembler/Pass-2/input/mdt.asm', 'r')
-mntFile = open('Macro-Assembler/Pass-2/input/mnt.json', 'r')
-pntabFile = open('Macro-Assembler/Pass-2/input/pntab.json', 'r')
-callsFile = open('Macro-Assembler/Pass-2/input/calls.asm', 'r')
+kpdtabFile = open('D:\Coding\PICT College\TE Lab Work\Semester 5\Python\Macro-Assembler\Pass-2\input\kpdtab.json', 'r')
+mdtFile = open('D:\Coding\PICT College\TE Lab Work\Semester 5\Python\Macro-Assembler\Pass-1\output\mdt.asm', 'r')
+mntFile = open('D:\Coding\PICT College\TE Lab Work\Semester 5\Python\Macro-Assembler\Pass-1\output\mnt.json', 'r')
+pntabFile = open('D:\Coding\PICT College\TE Lab Work\Semester 5\Python\Macro-Assembler\Pass-1\output\pntab.json', 'r')
+callsFile = open('D:\Coding\PICT College\TE Lab Work\Semester 5\Python\Macro-Assembler\Pass-2\input\calls.asm', 'r')
 
 # Expanded Code (Output) File
-expcodeFile = open('Macro-Assembler/Pass-2/output/expcode.asm', 'a')
+expcodeFile = open('D:\Coding\PICT College\TE Lab Work\Semester 5\Python\Macro-Assembler\Pass-2\output\expcode.asm', 'a')
 
 # Tables
 kpdtab = json.load(kpdtabFile)
 mnt = json.load(mntFile)
 pntab = json.load(pntabFile)
 
+# Regex pattern to split on occurrence of one or more spaces
 spacePattern = r'\s+'
 
 for line in callsFile:
     if line == '\n': continue
     line = line.strip()
 
+    # Split the line into words
     cmd = regex.split(spacePattern, line.rstrip())
-    macroName = cmd[0]   
-    MPList = cmd[1::]       
+
+    macroName = cmd[0] 
+    MPList = cmd[1::] 
+      
     mdtPointer, kpdtPointer, npp, nkp = "","","",""
 
     for key,value in mnt.items():
@@ -62,7 +65,7 @@ for line in callsFile:
             npp = value['pp']
             nkp = value['kp']
             break
-    
+
     tot = npp + nkp
 
     APTAB = pntab[macroName].copy()
@@ -88,10 +91,10 @@ for line in callsFile:
             aptPointer += 1
 
     if nkp:
-        for key,value in kpdtab.items():
+        for key, value in kpdtab.items():
             if (value["macro"] == macroName) and (value["value"] != "---"):
-                if APTAB[get_key(value["name"])]:
-                    APTAB[get_key(value["name"])] = value["value"]
+                if APTAB.get(get_key(value["name"], APTAB)):
+                    APTAB[get_key(value["name"], APTAB)] = value["value"]
 
     macroStmts = []
 
@@ -113,15 +116,18 @@ for line in callsFile:
 
         for itemIndex in range(len(macroCmd)):
             item = macroCmd[itemIndex]
-
+            
             if '(' in item:
-                tab,pos = process_params(item)
-                macroCmd[itemIndex] = APTAB[str(pos)]
+                tab_pos = process_params(item)
+                if tab_pos is not None:
+                    tab, pos = tab_pos
+                else:
+                    print("Invalid format for item:", item)
 
-        macroCmd[0] = "+" + macroCmd[0]   
+        macroCmd[0] = "+" + macroCmd[0]     # Add a '+' at the beginning to denote expanded code
         macroStmts[macroStatementIndex] = convert(macroCmd)
         expcodeFile.write(macroStmts[macroStatementIndex] + '\n')
-        
+
     mdtFile.seek(0)
     expcodeFile.write('\n')
     APTAB = ""
