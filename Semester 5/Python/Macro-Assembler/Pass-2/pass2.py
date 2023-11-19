@@ -27,29 +27,24 @@ def process_params(param: str):
 def convert(lst):
     return ' '.join(lst)
 
-# Input File(s)
 kpdtabFile = open('D:\Coding\PICT College\TE Lab Work\Semester 5\Python\Macro-Assembler\Pass-2\input\kpdtab.json', 'r')
 mdtFile = open('D:\Coding\PICT College\TE Lab Work\Semester 5\Python\Macro-Assembler\Pass-1\output\mdt.asm', 'r')
 mntFile = open('D:\Coding\PICT College\TE Lab Work\Semester 5\Python\Macro-Assembler\Pass-1\output\mnt.json', 'r')
 pntabFile = open('D:\Coding\PICT College\TE Lab Work\Semester 5\Python\Macro-Assembler\Pass-1\output\pntab.json', 'r')
 callsFile = open('D:\Coding\PICT College\TE Lab Work\Semester 5\Python\Macro-Assembler\Pass-2\input\calls.asm', 'r')
 
-# Expanded Code (Output) File
 expcodeFile = open('D:\Coding\PICT College\TE Lab Work\Semester 5\Python\Macro-Assembler\Pass-2\output\expcode.asm', 'a')
 
-# Tables
 kpdtab = json.load(kpdtabFile)
 mnt = json.load(mntFile)
 pntab = json.load(pntabFile)
 
-# Regex pattern to split on occurrence of one or more spaces
 spacePattern = r'\s+'
 
 for line in callsFile:
     if line == '\n': continue
     line = line.strip()
 
-    # Split the line into words
     cmd = regex.split(spacePattern, line.rstrip())
 
     macroName = cmd[0] 
@@ -58,7 +53,6 @@ for line in callsFile:
     mdtPointer, kpdtPointer, npp, nkp = "","","",""
 
     for key,value in mnt.items():
-        # print(key, value)
         if value['name'] == macroName:
             mdtPointer = value['mdtp']
             kpdtPointer = value['kpdtp']
