@@ -10,14 +10,14 @@ def get_key(val: str, dict: dict) -> any:
         if val == value:
             return key
 
-with open("Macro-Assembler/Pass-1/output/mdt.asm",'w') as file:
+with open("D:\Coding\PICT College\TE Lab Work\Semester 5\Python\Macro-Assembler\Pass-1\output\mdt.asm",'w') as file:
     pass
 file.close()
 
-inputFile = open('Macro-Assembler/Pass-1/input/program.asm', 'r')
+inputFile = open('D:\Coding\PICT College\TE Lab Work\Semester 5\Python\Macro-Assembler\Pass-1\input\program.asm', 'r')
 
 # Output File(s)
-mdtFile = open('Macro-Assembler/Pass-1/output/mdt.asm', 'a')
+mdtFile = open('D:\Coding\PICT College\TE Lab Work\Semester 5\Python\Macro-Assembler\Pass-1\output\mdt.asm', 'a')
 
 pattern = r'\s+'
 
@@ -127,14 +127,14 @@ for line in inputFile:
         mdtFile.write('MEND\n')
         continue
     
-with open('Macro-Assembler/Pass-1/output/mnt.json', 'w') as json_file:
+with open('D:\Coding\PICT College\TE Lab Work\Semester 5\Python\Macro-Assembler\Pass-1\output\mnt.json', 'w') as json_file:
     json.dump(mnt, json_file, indent=4)
 json_file.close()
 
-with open('Macro-Assembler/Pass-1/output/pntab.json', 'w') as json_file:
+with open('D:\Coding\PICT College\TE Lab Work\Semester 5\Python\Macro-Assembler\Pass-1\output\pntab.json', 'w') as json_file:
     json.dump(pntab, json_file, indent=4)
 json_file.close()
 
-with open('Macro-Assembler/Pass-1/output/kpdtab.json', 'w') as json_file:
+with open('D:\Coding\PICT College\TE Lab Work\Semester 5\Python\Macro-Assembler\Pass-1\output\kpdtab.json', 'w') as json_file:
     json.dump(kpdtab, json_file, indent=4)
 json_file.close()

@@ -1,10 +1,14 @@
+MEND
 MOVER (P,3) (P,1) 
-ADD (P,3) =’1’ 
-MOVER (P,4) (P,2) 
-ADD (P,3) =’5’ 
+ADD (P,3) (P,2) 
+MOVEM (P,3) (P,1) 
 MEND 
-MOVER (P,3) (P,1) 
-MOVER (P,4) (P,2) 
-ADD (P,3) =’15’ 
-ADD (P,4) =’10’ 
-MEND 
+START 
+READ O 
+READ T 
+ONE O 9 
+TWO T 7 
+STOP 
+O DS 1 
+T DS 1 
+END 

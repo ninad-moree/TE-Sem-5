@@ -1,18 +1,10 @@
 {
     "1": {
         "index": 1,
-        "name": "M1",
-        "pp": 4,
-        "kp": 2,
-        "mdtp": 1,
+        "name": "TWO",
+        "pp": 2,
+        "kp": 1,
+        "mdtp": 2,
         "kpdtp": 1
-    },
-    "2": {
-        "index": 2,
-        "name": "M2",
-        "pp": 4,
-        "kp": 2,
-        "mdtp": 6,
-        "kpdtp": 3
     }
 }
