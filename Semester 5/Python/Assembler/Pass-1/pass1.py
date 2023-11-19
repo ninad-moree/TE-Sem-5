@@ -1,12 +1,9 @@
-# Author: Shantanu Wable, Ruchi Bhale
-
 import re as regex
 import json
 import os
 
 os.system('cls' if os.name == 'nt' else 'clear')
 
-# Creating the intermediate code file 
 with open("Assembler/Pass-1/output/ic.txt",'w') as file:
     pass
 file.close()
@@ -19,14 +16,10 @@ conditionCodes = json.load(open('Assembler/Pass-1/input/condition-codes.json'))
 directives = json.load(open('Assembler/Pass-1/input/directives.json'))
 file = open('Assembler/Pass-1/input/program.asm', 'r')
 
-
-# Output Files
 icFile = open('Assembler/Pass-1/output/ic.txt', 'a')
 
-# Regex pattern to split on occurrence of one or more spaces
 pattern = r'\s+'
 
-# Global variables to store data
 label = ""
 instruction = ""
 op1 = ""
@@ -35,20 +28,16 @@ op1code = ""
 op2code = ""
 current = 0
 previous = 0
-flag = False        # Flag for when DS or DC is encountered
+flag = False       
 relativeAddresses = []
 IC = []
 stCnt = 1
 ltCnt = 1
 
-# Tables
 symbolTable = {}
 literalTable = {}
 
-# Loop through lines in file
 for line in file:
-
-    # Clearing variables from previous iteration
     label = ""
     instruction = ""
     op1 = ""
@@ -57,34 +46,21 @@ for line in file:
     op2code = ""
     var = ""
 
-    # Skip blank lines and remove beginning and trailing whitespace(s)
     if line == '\n': continue
     line = line.strip()
 
-    # Split the line into words and convert them to lowercase to avoid casing issues
     cmd = regex.split(pattern, line.rstrip())
     cmd = list(map(lambda x: x.lower(), cmd))
 
     # ------------ TOKENIZATION ------------
 
     if len(cmd) == 4:
-        """
-            Command is of the format: 
-            LABEL INSTRUCTION OP1 OP2
-        """
-        
         label = cmd[0]
         instruction = cmd[1]
         op1 = cmd[2]
         op2 = cmd[3]
 
     elif len(cmd) == 3:
-        """
-            Command is of the format: 
-            OP1 INSTRUCTION OP2
-                    or
-            INSTRUCTION OP1 OP2
-        """
         cmdIndex = -1
         for command in cmd:
             if command in mnemonics:
@@ -111,12 +87,6 @@ for line in file:
             op2 = cmd[cmdIndex + 1]
     
     elif len(cmd) == 2:
-        """
-            Command is of the format: 
-            INSTRUCTION OP1
-                    or
-            LABEL INSTRUCTION
-        """
         cmdIndex = -1
         for command in cmd:
             if command in directives:    
@@ -132,9 +102,6 @@ for line in file:
             label = cmd[0]
 
     else:
-        """
-            Command is of the format: INSTRUCTION
-        """
         instruction = cmd[0]
 
     # ------------ INSTRUCTION MATCHING ------------
@@ -149,7 +116,6 @@ for line in file:
 
         elif instruction == 'end':
             opcode = directives.get(instruction)
-            # size = int(msize.get(instruction))
             icFile.write(f'    {opcode}\n')
             break
 
@@ -194,17 +160,15 @@ for line in file:
                     current += 1
                     relativeAddresses.append(previous)
 
-                    literalTable[literal][2] = previous #//////////changes current to previous
+                    literalTable[literal][2] = previous 
                     opcode = "(DL, 01)"
-                    op1code = f"(C, {lt})"    #****changed value to lt because val gives memory add and lt is value of literal
-                    icFile.write(f"{previous} {opcode} {op1code}\n") #added prev for lc
+                    op1code = f"(C, {lt})" 
+                    icFile.write(f"{previous} {opcode} {op1code}\n") 
 
                 else:
                     pass
 
     elif instruction in mnemonics:
-        
-        # added these to avoid printing of (S,n) for the variables in the DS DC instructions
         if instruction=='ds': 
             # op1code=f"(C,{op2})"
             op2code=f""
@@ -300,7 +264,7 @@ for literal, [index, lt, value] in literalTable.items():
         previous = current
         current += 1
         relativeAddresses.append(previous)
-        literalTable[literal][2] = previous #////////changes current to previous
+        literalTable[literal][2] = previous
 
         opcode = "(DL, 01)"
         op1code = f"(C, {lt})"   
