@@ -8,8 +8,8 @@ opfile2=open('Pass2.txt','a')
 opcode=op1code=op2code=""
 lc=""
 cnt=-1
-pattern=r'\s+'
-
+# pattern=r'\s+'
+pattern = r'\(([^,]+),(\d+)\)'
 
 for line in icfile:
     opcode=op1code=op2code=""
@@ -17,19 +17,14 @@ for line in icfile:
         continue
     
     line=line.strip()
-    print(line)
     ipwords=regex.split(pattern,line.rstrip())
-    print(ipwords)
+    ipwords = regex.findall(r'\([^()]+\)|\S+', ipwords[0])
     
-
-
-    if len(ipwords) == 4:
-        lc=ipwords[0]
-        opcode=ipwords[1].split(',')[1].replace(')',"")
-        op1code=ipwords[2].replace('(',"")
-        op1code=op1code.replace(')',"")
-        cnt=ipwords[3].split(',')[1].replace(')',"")
-        
+    if len(ipwords) >= 4:        
+        lc = ipwords[0]
+        opcode = ipwords[1].split(',')[1].replace(')', "")
+        op1code = ipwords[2].replace('(', "").replace(')', "")
+        cnt = ipwords[3].split(',')[1].replace(')', "")
         
         if 'S' in ipwords[3]:
             for symbol,[stcnt,symb,value] in symboltable.items():
@@ -40,11 +35,10 @@ for line in icfile:
                 if ltcnt==int(cnt):
                     op2code=value
                     
-    elif len(ipwords)==3:
-        print(ipwords)
-        lc=ipwords[0]
-        opcode=ipwords[1].split(',')[1].replace(')',"")
-        cnt=ipwords[2].split(',')[1].replace(')',"")
+    elif len(ipwords)==3:        
+        lc = ipwords[0]
+        opcode = ipwords[1].split(',')[0].replace(')', "")
+        cnt = ipwords[2].split(',')[0].replace(')', "")
         
         if 'C' in ipwords[2]:
             op1code=ipwords[2].split(',')[1].replace(')',"")
@@ -56,13 +50,12 @@ for line in icfile:
         
     elif len(ipwords)==2:
         if 'IS' in ipwords[1]:
-            lc=ipwords[0]
-            opcode=opcode=ipwords[1].split(',')[1].replace(')',"")
+            lc = ipwords[0]
+            opcode = ipwords[1].split(',')[1].replace(')', "")
             op1code=""
             op2code=""
         else:
             continue
-        
     else:
         continue
         

@@ -4,8 +4,8 @@ using namespace std;
 int main()
 {
     ifstream symbolIn("symbol_table.txt", ios::in);
-    ifstream literalIn("littab.txt", ios::in);
-    ifstream intemediateIn("ic.txt", ios::in);
+    ifstream literalIn("literal_table.txt", ios::in);
+    ifstream intemediateIn("intermediate_code.txt", ios::in);
     fstream machineOut("machineCode.txt", ios::out);
     
     string line, word;
@@ -82,8 +82,7 @@ int main()
         }
         else if (cls == "IS")
         {
-            machineOut << "+"
-                 << "\t";
+            machineOut << "+" << "\t";
             machineOut << mnemonic << "\t";
 
             if (mnemonic == "0")
@@ -113,8 +112,7 @@ int main()
             }
             else
             {
-                machineOut << "+"
-                     << "\t";
+                machineOut << "+" << "\t";
                 for (int j = line.length() - 2; j >= 0; j--)
                 {
                     if (line[j] == ',')
