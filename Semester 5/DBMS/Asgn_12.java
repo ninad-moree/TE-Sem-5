@@ -1,7 +1,7 @@
 import com.mongodb.*;
 import java.util.Scanner;
 
- public class Assgn12 {
+ public class Asgn_12 {
      private static void choice_input() {
          System.out.println("\n1. Insert data into the database\n2. Update database documents\n3. Delete database documents\n4. Show database collections\n5. Exit");
      }

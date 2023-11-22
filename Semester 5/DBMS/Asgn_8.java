@@ -2,7 +2,7 @@
 import java.sql.*;
 import java.util.*;
 
-public class Ass8 {
+public class Asgn_8 {
 	public static void main(String []args) {
 		
 		System.out.println("1.Check Connection");
