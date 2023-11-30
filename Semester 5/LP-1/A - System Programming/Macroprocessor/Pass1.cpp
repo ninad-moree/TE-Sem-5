@@ -75,28 +75,20 @@ void processMacroPass1(const std::string &inputFile)
                 pnt << macroName << ":\t";
 
                 for (const auto &entry : pntab)
-                {
                     pnt << entry.first << "\t";
-                }
                 pnt << "\n";
                 pntab.clear();
             }
             else if (flag == 1)
             {
                 if (word.find('&') != std::string::npos)
-                {
-                    // word.erase(std::remove(word.begin(), word.end(), '&'), word.end());
                     mdt << "(P," << pntab[word] << ")\t";
-                }
                 else
-                {
                     mdt << word << "\t";
-                }
+                
             }
             else
-            {
                 ir << line << "\n";
-            }
         }
     }
 
