@@ -62,8 +62,7 @@ select * from Training;
 +------+---------------+-------+--------+
 
 
--- 1) Display all students details with branch ‘Computer ‘and ‘It’ and student name
--- starting with 'a' or 'd'.
+-- 1) Display all students details with branch ‘Computer ‘and ‘It’ and student name  starting with 'a' or 'd'.
 select * from Student where (s_name like 'a%' or s_name like 'd%') and (s_branch="CE" or s_branch="IT");
 +-------+----------+------+-------------+------+----------+------------+
 | s_id | drive_id | t_id | s_name | CGPA | s_branch | s_dob |
@@ -158,8 +157,7 @@ select distinct(Pcompany_name) from PlacementDrive where (location="Pune" or loc
 +---------------+
 
 
--- 6) Find the student name having maximum CGPA score and names of students
--- having CGPA score between 7 to 9 .
+-- 6) Find the student name having maximum CGPA score and names of students having CGPA score between 7 to 9 .
 select s_name from Student where CGPA=10 or (CGPA>=7 and CGPA<=9);
 +-------------+
 | s_name |
@@ -194,8 +192,7 @@ select s.s_name, t.t_id from Student s join Training t on s.t_id = t.t_id order 
 +-----------------+------+
 
 
--- 8) Display PCompany name, S_name ,location and Package with Package 30K,
--- 40K and 50k
+-- 8) Display PCompany name, S_name ,location and Package with Package 30K, 40K and 50k
 select pd.Pcompany_name, s.s_name, pd.location, pd.package_LPA 
 from Student s join PlacementDrive pd on s.drive_id = pd.drive_id 
 where pd.package_LPA in (20,22,25);
