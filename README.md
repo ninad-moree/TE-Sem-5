@@ -29,11 +29,11 @@
       1. Data Science and Big Data Aanlytics Laboratory
 </a>
 <br/>
-<a href="https://github.com/ninad-moree/TE-Lab-Work/tree/main/Semester%206/LP-2">
+<a href="">
       2. Web Technology Laboratory
 </a>
 <br/>
-<a href="">
+<a href="https://github.com/ninad-moree/TE-Lab-Work/tree/main/Semester%206/LP-2">
       3. Laboratory Practice - 2
 </a>
 
