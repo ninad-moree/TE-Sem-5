@@ -25,7 +25,7 @@
       <img src="https://img.shields.io/badge/Laboratory Practice 2-red?style=for-the-badge&" alt="LP2 Badge" />  
 </div>
 
-<a href="">
+<a href="https://github.com/ninad-moree/TE-Lab-Work/tree/main/Semester%206/DSBDAL">
       1. Data Science and Big Data Aanlytics Laboratory
 </a>
 <br/>
