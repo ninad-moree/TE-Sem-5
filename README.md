@@ -33,7 +33,7 @@
       2. Web Technology Laboratory
 </a>
 <br/>
-<a href="">
+<a href="https://github.com/ninad-moree/TE-Lab-Work/tree/main/Semester%206/LP-2">
       3. Laboratory Practice - 2
 </a>
 
