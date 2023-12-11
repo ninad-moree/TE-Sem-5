@@ -29,7 +29,7 @@
       1. Data Science and Big Data Aanlytics Laboratory
 </a>
 <br/>
-<a href="">
+<a href="https://github.com/ninad-moree/TE-Lab-Work/tree/main/Semester%206/WTL">
       2. Web Technology Laboratory
 </a>
 <br/>
