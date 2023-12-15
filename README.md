@@ -4,6 +4,7 @@
 
 ![Static Badge](https://img.shields.io/badge/Database%20Management%20Systems-green)
 ![Static Badge](https://img.shields.io/badge/Laboratory%20Practice%201-yellow)
+![Static Badge](https://img.shields.io/badge/Computer%20Network%20Security-orange)
 <!-- 
 <div id="badges" style="display: flex; justify-content: center;">
       <a href="https://github.com/ninad-moree/TE-Lab-Work/tree/main/Semester%205/DBMS">
@@ -21,6 +22,10 @@
 <br/>
 <a href="https://github.com/ninad-moree/TE-Lab-Work/tree/main/Semester%205/LP-1">
       2. Laboratory Practice - 1
+</a>
+<br/>
+<a href="https://github.com/ninad-moree/TE-Lab-Work/tree/main/Semester%205/CNS">
+      3. Computer Networks and Security Laboratory
 </a>
 
 ## Semester: 6
@@ -48,6 +53,3 @@
 <a href="https://github.com/ninad-moree/TE-Lab-Work/tree/main/Semester%206/LP-2">
       3. Laboratory Practice - 2
 </a>
-
-
-
