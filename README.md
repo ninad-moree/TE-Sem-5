@@ -16,15 +16,15 @@
 </div>
 -->
 
-<a href="https://github.com/ninad-moree/TE-Lab-Work/tree/main/Semester%205/DBMS">
+<a href="DBMS">
       1. Database Management Systems Laboratory
 </a>
 <br/>
-<a href="https://github.com/ninad-moree/TE-Lab-Work/tree/main/Semester%205/LP-1">
+<a href=LP-1">
       2. Laboratory Practice - 1
 </a>
 <br/>
-<a href="https://github.com/ninad-moree/TE-Lab-Work/tree/main/Semester%205/CNS">
+<a href="CNS">
       3. Computer Networks and Security Laboratory
 </a>
 
